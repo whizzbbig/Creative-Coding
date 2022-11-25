@@ -1,0 +1,15 @@
+@font-face {
+  font-display: swap;
+  font-family: $font-formulaBlack;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../fonts/formula-condensedblack.woff2') format('woff2'), url('../../fonts/formula-condensedblack.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: $font-Calibre;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../fonts/Calibre-Semibold.woff2') format('woff2'), url('../../fonts/Calibre-Semibold.woff') format('woff');
+}

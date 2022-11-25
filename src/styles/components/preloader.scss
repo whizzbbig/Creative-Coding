@@ -1,0 +1,24 @@
+.preloader {
+  @extend %cover;
+
+  z-index: z('preloader');
+}
+
+.preloader__background {
+  @extend %cover;
+
+  background: $color-white;
+}
+
+.preloader__text {
+  color: $color-black;
+  font-size: 70rem * 0.5;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -55%);
+
+  @include media('<=phone') {
+    font-size: 27rem * 0.5;
+  }
+}

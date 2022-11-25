@@ -1,0 +1,13 @@
+@import './utils/functions';
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/responsive';
+
+@import './base/reset';
+@import './base/base';
+@import './base/fonts';
+
+@import './components/canvas';
+@import './components/preloader';
+
+@import './pages/home';

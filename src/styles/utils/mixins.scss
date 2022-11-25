@@ -1,0 +1,43 @@
+%cover {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+%link {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+
+  &:before {
+    background: currentColor;
+    bottom: 0;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.4s $ease-in-out-cubic;
+    width: 100%;
+  }
+
+  &:hover {
+    &:before {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+}
+
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s
+}
+
+.duration-300 {
+    transition-duration: .3s
+}

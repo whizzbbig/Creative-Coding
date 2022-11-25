@@ -1,0 +1,41 @@
+{
+  "name": "thieb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "@prismicio/client": "^6.6.4",
+    "@prismicio/helpers": "^2.3.3",
+    "auto-bind": "^5.0.1",
+    "eslint": "^8.21.0",
+    "gsap": "^3.10.4",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0",
+    "include-media": "^1.4.10",
+    "keen-slider": "^6.8.3",
+    "nanoevents": "^7.0.1",
+    "node-fetch": "^3.2.10",
+    "normalize-wheel": "^1.0.1",
+    "ogl": "^0.0.97",
+    "prefix": "^1.0.0",
+    "sass": "^1.54.3",
+    "standard": "^17.0.0",
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-order": "^5.0.0",
+    "svgstore": "^3.0.1",
+    "ua-parser-js": "^1.0.2",
+    "vite": "^3.0.4",
+    "vite-plugin-eslint": "^1.7.0",
+    "vite-plugin-glsl": "^0.3.0",
+    "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-pwa": "^0.12.3",
+    "vite-plugin-stylelint": "^3.0.6"
+  }
+}
