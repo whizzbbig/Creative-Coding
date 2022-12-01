@@ -1,6 +1,6 @@
 html {
-  background: $color-black;
-  color: $color-white;
+  color: $color-black;
+  background: $color-white;
   font-family: $font-Calibre;
   overflow: hidden;
   position: fixed;
@@ -18,6 +18,13 @@ html {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .app {

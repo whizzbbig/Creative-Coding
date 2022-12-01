@@ -13,6 +13,7 @@
     "@prismicio/client": "^6.6.4",
     "@prismicio/helpers": "^2.3.3",
     "auto-bind": "^5.0.1",
+    "canvas-sketch": "^0.7.6",
     "eslint": "^8.21.0",
     "gsap": "^3.10.4",
     "imagemin": "^8.0.1",
@@ -30,6 +31,7 @@
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-order": "^5.0.0",
     "svgstore": "^3.0.1",
+    "tweakpane": "^3.1.0",
     "ua-parser-js": "^1.0.2",
     "vite": "^3.0.4",
     "vite-plugin-eslint": "^1.7.0",
@@ -37,5 +39,8 @@
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-pwa": "^0.12.3",
     "vite-plugin-stylelint": "^3.0.6"
+  },
+  "dependencies": {
+    "canvas-sketch-util": "^1.10.0"
   }
 }
