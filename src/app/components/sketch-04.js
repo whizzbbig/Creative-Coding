@@ -4,9 +4,12 @@ import random from 'canvas-sketch-util/random'
 import math from 'canvas-sketch-util/math'
 import { Pane } from 'tweakpane'
 
+const home = document.querySelector('.home__wrapper')
+
 const settings = {
   dimensions: [1080, 1080],
-  animate: true
+  animate: true,
+  parent: home
 }
 
 const params = {

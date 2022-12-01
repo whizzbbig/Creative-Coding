@@ -3,8 +3,14 @@
 
 import canvasSketch from 'canvas-sketch'
 
+const home = document.querySelector('.home__wrapper')
+
 const settings = {
-  dimensions: [1080, 1080]
+  dimensions: [1080, 1080],
+  parent: home,
+  animate: true,
+  fps: 5,
+  playbackRate: 'throttle'
 }
 
 const sketch = ({ context, width, height }) => {

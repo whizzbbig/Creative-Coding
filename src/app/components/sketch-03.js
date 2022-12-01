@@ -2,9 +2,12 @@ import canvasSketch from 'canvas-sketch'
 import random from 'canvas-sketch-util/random'
 import math from 'canvas-sketch-util/math'
 
+const home = document.querySelector('.home__wrapper')
+
 const settings = {
   dimensions: [1080, 1080],
-  animate: true
+  animate: true,
+  parent: home
 }
 
 const sketch = ({ context, width, height }) => {
