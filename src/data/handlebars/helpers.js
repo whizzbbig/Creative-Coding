@@ -25,8 +25,8 @@ export const handlebarsHelpers = {
 
   prismicMedia: ({ url }) => {
     if (url) {
-      url = url.replace('https://thieb.cdn.prismic.io/thieb/', '/medias/')
-      url = url.replace('https://images.prismic.io/thieb/', '/medias/')
+      url = url.replace('https://your_repository.cdn.prismic.io/your_repository/', '/medias/')
+      url = url.replace('https://images.prismic.io/your_repository/', '/medias/')
       url = url.replace('?auto=compress,format', '')
       url = url.replace(/\+/g, '-')
     }

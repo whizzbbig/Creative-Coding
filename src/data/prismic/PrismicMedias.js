@@ -3,7 +3,7 @@ import fs from 'fs'
 import imagemin from 'imagemin'
 import imageminWebP from 'imagemin-webp'
 
-const ID = 'thieb'
+const ID = 'your_repository'
 const DIRECTORY = 'src/pages/public/medias'
 
 export default class {
