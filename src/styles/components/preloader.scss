@@ -7,11 +7,11 @@
 .preloader__background {
   @extend %cover;
 
-  background: $color-white;
+  background: $color-black;
 }
 
 .preloader__text {
-  color: $color-black;
+  color: $color-white;
   font-size: 70rem * 0.5;
   left: 50%;
   position: absolute;
