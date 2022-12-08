@@ -4,7 +4,13 @@ import Prefix from 'prefix'
 import Component from '@/classes/Component'
 import Detection from '@/classes/Detection'
 
-import Scrolling from '@/components/Scrolling'
+import Section from '@/components/Section'
+
+import '@/components/sketch-01'
+import '@/components/sketch-02'
+import '@/components/sketch-03'
+import '@/components/sketch-04'
+import '@/components/sketch-05'
 
 import { getBoundingClientRect } from '@/utils/dom'
 import { lerp } from '@/utils/math'
@@ -18,9 +24,11 @@ export default class Page extends Component {
       element: '.home',
       elements: {
         wrapper: '.home__wrapper',
-        sections: '[data-section]'
+        covers: '[data-canvas]'
       }
     })
+
+    console.log(this.elements.covers)
 
     this.transform = Prefix('transform')
 
@@ -39,6 +47,8 @@ export default class Page extends Component {
   create () {
     super.create()
 
+    console.log(this.elements.covers)
+
     this.createObserver()
     this.createScrolling()
   }
@@ -54,9 +64,12 @@ export default class Page extends Component {
   }
 
   createScrolling () {
-    this.scrolling = new Scrolling({
-      element: this.element,
-      wrapper: this.elements.wrapper
+    this.covers = this.elements.covers.map((element, index) => {
+      return new Section({
+        element,
+        index,
+        parent: this
+      })
     })
   }
 
@@ -76,6 +89,10 @@ export default class Page extends Component {
     this.elements.wrapper.style[this.transform] = 'translate3d(0, 0, 0)'
 
     this.bounds = getBoundingClientRect(this.elements.wrapper)
+
+    this.covers.forEach(cover => {
+      cover.onResize(this.bounds.height)
+    })
   }
 
   onKeyDown ({ key }) {
@@ -139,6 +156,12 @@ export default class Page extends Component {
     this.elements.wrapper.style[this.transform] = `translate3d(0, ${this.scroll.current}px, 0)`
 
     this.scroll.last = this.scroll.current
+
+    // if (this.scroll.current !== 0) {
+    //   this.elements.menu.classList.add(this.classes.menuActive)
+    // }
+
+    this.covers.forEach(cover => cover.update?.())
   }
 
   /**

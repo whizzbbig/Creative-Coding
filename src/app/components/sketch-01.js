@@ -13,12 +13,15 @@ const settings = {
   playbackRate: 'throttle'
 }
 
+const typeCanvas = document.querySelector('.sketch-01')
+const typeContext = typeCanvas.getContext('2d')
+
 const sketch = ({ context, width, height }) => {
   return () => {
-    context.fillStyle = 'black'
-    context.fillRect(0, 0, width, height)
+    typeContext.fillStyle = 'black'
+    typeContext.fillRect(0, 0, width, height)
 
-    context.lineWidth = width * 0.01
+    typeContext.lineWidth = width * 0.01
 
     const w = width * 0.10
     const h = height * 0.10
@@ -36,15 +39,15 @@ const sketch = ({ context, width, height }) => {
         x = ix + (w + gap) * i
         y = iy + (h + gap) * j
 
-        context.beginPath()
-        context.rect(x, y, w, h)
-        context.strokeStyle = 'white'
-        context.stroke()
+        typeContext.beginPath()
+        typeContext.rect(x, y, w, h)
+        typeContext.strokeStyle = 'white'
+        typeContext.stroke()
 
         if (Math.random() > 0.5) {
-          context.beginPath()
-          context.rect(x + offset / 2, y + offset / 2, w - offset, h - offset)
-          context.stroke()
+          typeContext.beginPath()
+          typeContext.rect(x + offset / 2, y + offset / 2, w - offset, h - offset)
+          typeContext.stroke()
         }
       }
     }

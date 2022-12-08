@@ -10,6 +10,9 @@ const settings = {
   parent: home
 }
 
+const typeCanvas = document.querySelector('.sketch-03')
+const typeContext = typeCanvas.getContext('2d')
+
 const sketch = ({ context, width, height }) => {
   const agents = []
 
@@ -21,8 +24,8 @@ const sketch = ({ context, width, height }) => {
   }
 
   return ({ context, width, height }) => {
-    context.fillStyle = 'black'
-    context.fillRect(0, 0, width, height)
+    typeContext.fillStyle = 'black'
+    typeContext.fillRect(0, 0, width, height)
 
     for (let i = 0; i < agents.length; i++) {
       const agent = agents[i]
@@ -34,19 +37,19 @@ const sketch = ({ context, width, height }) => {
 
         if (dist > 200) continue
 
-        context.lineWidth = math.mapRange(dist, 0, 200, 10, 1)
-        context.strokeStyle = 'white'
+        typeContext.lineWidth = math.mapRange(dist, 0, 200, 10, 1)
+        typeContext.strokeStyle = 'white'
 
-        context.beginPath()
-        context.moveTo(agent.pos.x, agent.pos.y)
-        context.lineTo(other.pos.x, other.pos.y)
-        context.stroke()
+        typeContext.beginPath()
+        typeContext.moveTo(agent.pos.x, agent.pos.y)
+        typeContext.lineTo(other.pos.x, other.pos.y)
+        typeContext.stroke()
       }
     }
 
     agents.forEach(agent => {
       agent.update()
-      agent.draw(context)
+      agent.draw(typeContext)
       agent.bounce(width, height)
     })
   }
@@ -83,16 +86,16 @@ class Agent {
     this.pos.y += this.vel.y
   }
 
-  draw (context) {
-    context.save()
-    context.translate(this.pos.x, this.pos.y)
+  draw (typeContext) {
+    typeContext.save()
+    typeContext.translate(this.pos.x, this.pos.y)
 
-    context.lineWidth = 4
+    typeContext.lineWidth = 4
 
-    context.beginPath()
-    context.arc(0, 0, this.radius, 0, Math.PI * 2)
-    context.fill()
-    context.stroke()
-    context.restore()
+    typeContext.beginPath()
+    typeContext.arc(0, 0, this.radius, 0, Math.PI * 2)
+    typeContext.fill()
+    typeContext.stroke()
+    typeContext.restore()
   }
 }

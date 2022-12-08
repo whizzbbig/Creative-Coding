@@ -12,10 +12,13 @@ const settings = {
   playbackRate: 'throttle'
 }
 
+const typeCanvas = document.querySelector('.sketch-02')
+const typeContext = typeCanvas.getContext('2d')
+
 const sketch = ({ context, width, height }) => {
   return () => {
-    context.fillStyle = 'black'
-    context.fillRect(0, 0, width, height)
+    typeContext.fillStyle = 'black'
+    typeContext.fillRect(0, 0, width, height)
 
     const cx = width * 0.5
     const cy = height * 0.5
@@ -34,28 +37,28 @@ const sketch = ({ context, width, height }) => {
       x = cx + radius * Math.sin(angle)
       y = cy + radius * Math.cos(angle)
 
-      context.save()
-      context.translate(x, y)
-      context.rotate(-angle)
-      context.scale(random.range(0.2, 2), random.range(0.2, 1))
+      typeContext.save()
+      typeContext.translate(x, y)
+      typeContext.rotate(-angle)
+      typeContext.scale(random.range(0.2, 2), random.range(0.2, 1))
 
-      context.beginPath()
-      context.rect(-w * 0.5, random.range(0, -h * 0.5), w, h)
-      context.fillStyle = '#D90404'
-      context.fill()
-      context.restore()
+      typeContext.beginPath()
+      typeContext.rect(-w * 0.5, random.range(0, -h * 0.5), w, h)
+      typeContext.fillStyle = '#D90404'
+      typeContext.fill()
+      typeContext.restore()
 
-      context.save()
-      context.translate(cx, cy)
-      context.rotate(-angle)
+      typeContext.save()
+      typeContext.translate(cx, cy)
+      typeContext.rotate(-angle)
 
-      context.lineWidth = random.range(5, 20)
+      typeContext.lineWidth = random.range(5, 20)
 
-      context.beginPath()
-      context.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5))
-      context.strokeStyle = 'white'
-      context.stroke()
-      context.restore()
+      typeContext.beginPath()
+      typeContext.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5))
+      typeContext.strokeStyle = 'white'
+      typeContext.stroke()
+      typeContext.restore()
     }
   }
 }

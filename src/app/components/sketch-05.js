@@ -27,6 +27,8 @@ const sketch = ({ context, width, height }) => {
   const rows = Math.floor(height / cell)
   const numCells = cols * rows
 
+  context.canvas.classList.className = '.sketch-05'
+
   typeCanvas.width = cols
   typeCanvas.height = rows
 

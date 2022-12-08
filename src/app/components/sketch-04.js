@@ -24,10 +24,13 @@ const params = {
   lineCap: 'butt'
 }
 
+const typeCanvas = document.querySelector('.sketch-04')
+const typeContext = typeCanvas.getContext('2d')
+
 const sketch = () => {
   return ({ context, width, height, frame }) => {
-    context.fillStyle = 'white'
-    context.fillRect(0, 0, width, height)
+    typeContext.fillStyle = 'white'
+    typeContext.fillRect(0, 0, width, height)
 
     const cols = params.cols
     const rows = params.rows
@@ -59,20 +62,20 @@ const sketch = () => {
       //   const scale = (n * 0.5 + 0.5) * 30
       const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax)
 
-      context.save()
-      context.translate(x, y)
-      context.translate(margx, margy)
-      context.translate(cellw * 0.5, cellh * 0.5)
-      context.rotate(angle)
+      typeContext.save()
+      typeContext.translate(x, y)
+      typeContext.translate(margx, margy)
+      typeContext.translate(cellw * 0.5, cellh * 0.5)
+      typeContext.rotate(angle)
 
-      context.lineWidth = scale
-      context.lineCap = params.lineCap
+      typeContext.lineWidth = scale
+      typeContext.lineCap = params.lineCap
 
-      context.beginPath()
-      context.moveTo(w * -0.5, 0)
-      context.lineTo(w * 0.5, 0)
-      context.stroke()
-      context.restore()
+      typeContext.beginPath()
+      typeContext.moveTo(w * -0.5, 0)
+      typeContext.lineTo(w * 0.5, 0)
+      typeContext.stroke()
+      typeContext.restore()
     }
   }
 }
