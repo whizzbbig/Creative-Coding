@@ -1,66 +1,60 @@
-import canvasSketch from 'canvas-sketch'
-import math from 'canvas-sketch-util/math'
-import random from 'canvas-sketch-util/random'
-
-const home = document.querySelector('.home__wrapper')
-
-const settings = {
-  dimensions: [1080, 1080],
-  parent: home,
-  animate: true,
-  fps: 5,
-  playbackRate: 'throttle'
-}
-
 const typeCanvas = document.querySelector('.sketch-02')
 const typeContext = typeCanvas.getContext('2d')
 
-const sketch = ({ context, width, height }) => {
-  return () => {
-    typeContext.fillStyle = 'black'
-    typeContext.fillRect(0, 0, width, height)
+const width = 1080
+const height = 1080
 
-    const cx = width * 0.5
-    const cy = height * 0.5
-    const w = width * 0.01
-    const h = height * 0.1
+const animate = true
+const fps = 5
 
-    let x, y
+const sketch = () => {
+  typeContext.fillStyle = 'black'
+  typeContext.fillRect(0, 0, width, height)
 
-    const num = random.range(12, 45)
-    const radius = width * 0.3
+  const cx = width * 0.5
+  const cy = height * 0.5
+  const w = width * 0.01
+  const h = height * 0.1
 
-    for (let i = 0; i < num; i++) {
-      const slice = math.degToRad(360 / num)
-      const angle = slice * i
+  let x, y
 
-      x = cx + radius * Math.sin(angle)
-      y = cy + radius * Math.cos(angle)
+  const num = Math.floor(Math.random() * (45 - 12 + 1)) + 12
+  const radius = width * 0.3
 
-      typeContext.save()
-      typeContext.translate(x, y)
-      typeContext.rotate(-angle)
-      typeContext.scale(random.range(0.2, 2), random.range(0.2, 1))
+  for (let i = 0; i < num; i++) {
+    const slice = (360 / num) * (Math.PI / 180)
+    const angle = slice * i
 
-      typeContext.beginPath()
-      typeContext.rect(-w * 0.5, random.range(0, -h * 0.5), w, h)
-      typeContext.fillStyle = '#D90404'
-      typeContext.fill()
-      typeContext.restore()
+    x = cx + radius * Math.sin(angle)
+    y = cy + radius * Math.cos(angle)
 
-      typeContext.save()
-      typeContext.translate(cx, cy)
-      typeContext.rotate(-angle)
+    typeContext.save()
+    typeContext.translate(x, y)
+    typeContext.rotate(-angle)
+    typeContext.scale(Math.random() * (2 - 0.2) + 0.2, Math.random() * (1 - 0.2) + 0.2)
 
-      typeContext.lineWidth = random.range(5, 20)
+    typeContext.beginPath()
+    typeContext.rect(-w * 0.5, Math.random() * (-h * 0.5), w, h)
+    typeContext.fillStyle = '#D90404'
+    typeContext.fill()
+    typeContext.restore()
 
-      typeContext.beginPath()
-      typeContext.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5))
-      typeContext.strokeStyle = 'white'
-      typeContext.stroke()
-      typeContext.restore()
-    }
+    typeContext.save()
+    typeContext.translate(cx, cy)
+    typeContext.rotate(-angle)
+
+    typeContext.lineWidth = Math.floor(Math.random() * (20 - 5 + 1)) + 5
+
+    typeContext.beginPath()
+    typeContext.arc(0, 0, radius * (Math.random() * (1.3 - 0.7) + 0.7), slice * (Math.random() * (1 - -8) + -8), slice * (Math.random() * (5 - 1) + 1))
+    typeContext.strokeStyle = 'white'
+    typeContext.stroke()
+    typeContext.restore()
   }
 }
 
-canvasSketch(sketch, settings)
+if (animate) {
+  setInterval(sketch, 1000 / fps)
+} else {
+  sketch()
+}

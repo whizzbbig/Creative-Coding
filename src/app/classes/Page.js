@@ -10,7 +10,7 @@ import '@/components/sketch-01'
 import '@/components/sketch-02'
 import '@/components/sketch-03'
 import '@/components/sketch-04'
-import '@/components/sketch-05'
+// import '@/components/sketch-05'
 
 import { getBoundingClientRect } from '@/utils/dom'
 import { lerp } from '@/utils/math'

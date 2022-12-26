@@ -2,14 +2,12 @@
 import canvasSketch from 'canvas-sketch'
 import random from 'canvas-sketch-util/random'
 
-const home = document.querySelector('.home__wrapper')
-
 const settings = {
   dimensions: [1080, 1080],
-  parent: home,
   animate: true,
   fps: 10,
-  playbackRate: 'throttle'
+  playbackRate: 'throttle',
+  canvas: '.sketch-05'
 }
 
 let manager
@@ -18,7 +16,7 @@ let text = 'A'
 let fontSize = 1200
 let fontFamily = 'serif'
 
-const typeCanvas = document.createElement('canvas')
+const typeCanvas = document.querySelector('.sketch-05')
 const typeContext = typeCanvas.getContext('2d')
 
 const sketch = ({ context, width, height }) => {

@@ -1,16 +1,12 @@
-/* eslint-disable prefer-const */
-import canvasSketch from 'canvas-sketch'
+
 import random from 'canvas-sketch-util/random'
 import math from 'canvas-sketch-util/math'
-import { Pane } from 'tweakpane'
 
-const home = document.querySelector('.home__wrapper')
-
-const settings = {
-  dimensions: [1080, 1080],
-  animate: true,
-  parent: home
-}
+const typeCanvas = document.querySelector('.sketch-04')
+const typeContext = typeCanvas.getContext('2d')
+const width = 1080
+const height = 1080
+let frame = 0
 
 const params = {
   cols: 10,
@@ -24,79 +20,54 @@ const params = {
   lineCap: 'butt'
 }
 
-const typeCanvas = document.querySelector('.sketch-04')
-const typeContext = typeCanvas.getContext('2d')
+function draw () {
+  typeContext.fillStyle = 'white'
+  typeContext.fillRect(0, 0, width, height)
 
-const sketch = () => {
-  return ({ context, width, height, frame }) => {
-    typeContext.fillStyle = 'white'
-    typeContext.fillRect(0, 0, width, height)
+  const cols = params.cols
+  const rows = params.rows
+  const numCells = cols * rows
 
-    const cols = params.cols
-    const rows = params.rows
-    const numCells = cols * rows
+  const gridw = width * 0.8
+  const gridh = height * 0.8
+  const cellw = gridw / cols
+  const cellh = gridh / rows
+  const margx = (width - gridw) * 0.5
+  const margy = (height - gridh) * 0.5
 
-    const gridw = width * 0.8
-    const gridh = height * 0.8
-    const cellw = gridw / cols
-    const cellh = gridh / rows
-    const margx = (width - gridw) * 0.5
-    const margy = (height - gridh) * 0.5
+  for (let i = 0; i < numCells; i++) {
+    const col = i % cols
+    const row = Math.floor(i / cols)
 
-    for (let i = 0; i < numCells; i++) {
-      const col = i % cols
-      const row = Math.floor(i / cols)
+    const x = col * cellw
+    const y = row * cellh
+    const w = cellw * 0.8
 
-      const x = col * cellw
-      const y = row * cellh
-      const w = cellw * 0.8
-      //   const h = cellh * 0.8
+    const f = params.animate ? frame : params.frame
 
-      const f = params.animate ? frame : params.frame
+    const n = random.noise3D(x, y, f * 10, params.freq)
+    const angle = n * Math.PI * params.amp
 
-      //   const n = random.noise2D(x + frame * 10, y, params.freq)
-      const n = random.noise3D(x, y, f * 10, params.freq)
-      const angle = n * Math.PI * params.amp
+    const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax)
 
-      //   const scale = (n * 1) / 2 * 30p
-      //   const scale = (n * 0.5 + 0.5) * 30
-      const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax)
+    typeContext.save()
+    typeContext.translate(x, y)
+    typeContext.translate(margx, margy)
+    typeContext.translate(cellw * 0.5, cellh * 0.5)
+    typeContext.rotate(angle)
 
-      typeContext.save()
-      typeContext.translate(x, y)
-      typeContext.translate(margx, margy)
-      typeContext.translate(cellw * 0.5, cellh * 0.5)
-      typeContext.rotate(angle)
+    typeContext.lineWidth = scale
+    typeContext.lineCap = params.lineCap
 
-      typeContext.lineWidth = scale
-      typeContext.lineCap = params.lineCap
-
-      typeContext.beginPath()
-      typeContext.moveTo(w * -0.5, 0)
-      typeContext.lineTo(w * 0.5, 0)
-      typeContext.stroke()
-      typeContext.restore()
-    }
+    typeContext.beginPath()
+    typeContext.moveTo(w * -0.5, 0)
+    typeContext.lineTo(w * 0.5, 0)
+    typeContext.stroke()
+    typeContext.restore()
   }
+
+  frame += +'.5'
+  window.requestAnimationFrame(draw)
 }
 
-const createPane = () => {
-  const pane = new Pane()
-  let folder
-
-  folder = pane.addFolder({ title: 'Grid' })
-  folder.addInput(params, 'lineCap', { options: { butt: 'butt', round: 'round', square: 'square' } })
-  folder.addInput(params, 'cols', { min: 2, max: 50, step: 1 })
-  folder.addInput(params, 'rows', { min: 2, max: 50, step: 1 })
-  folder.addInput(params, 'scaleMin', { min: 1, max: 100 })
-  folder.addInput(params, 'scaleMax', { min: 1, max: 100 })
-
-  folder = pane.addFolder({ title: 'Noise' })
-  folder.addInput(params, 'freq', { min: -0.01, max: 0.01 })
-  folder.addInput(params, 'amp', { min: 0, max: 1 })
-  folder.addInput(params, 'animate')
-  folder.addInput(params, 'frame', { min: 0, max: 999 })
-}
-
-createPane()
-canvasSketch(sketch, settings)
+draw()
