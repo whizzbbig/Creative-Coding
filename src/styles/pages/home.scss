@@ -20,7 +20,8 @@ canvas {
     height: 1080px !important;
 
     @include media('<=phone') {
-        width: 600px !important;
+        padding: 4rem 0;
+        width: 500px !important;
         height: 600px !important;
     }
 }
