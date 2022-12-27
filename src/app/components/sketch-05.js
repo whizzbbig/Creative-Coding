@@ -7,7 +7,7 @@ const settings = {
   animate: true,
   fps: 10,
   playbackRate: 'throttle',
-  canvas: '.sketch-05'
+  canvas: document.querySelector('.sketch-05')
 }
 
 let manager
@@ -16,7 +16,7 @@ let text = 'A'
 let fontSize = 1200
 let fontFamily = 'serif'
 
-const typeCanvas = document.querySelector('.sketch-05')
+const typeCanvas = document.createElement('canvas')
 const typeContext = typeCanvas.getContext('2d')
 
 const sketch = ({ context, width, height }) => {
